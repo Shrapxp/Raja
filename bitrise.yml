@@ -1,0 +1,12 @@
+format_version: 5
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key@4.0:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - chmod +x raja
+    - python-script@1.0:
+        title: Run Python Script
+        inputs:
+        - python_version: 3.9
+        - script_path: m.py
